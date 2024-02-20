@@ -9,7 +9,6 @@ public class PlayerMovement : MonoBehaviour
     private float moveSpeed;
     public float walkSpeed;
     public float sprintSpeed;
-    public float slideSpeed;
 
     private float desiredMoveSpeed;
     private float lastDesiredMoveSpeed;
@@ -25,15 +24,9 @@ public class PlayerMovement : MonoBehaviour
     public float airMultiplier;
     public bool readyToJump;
 
-    [Header("Crouching")]
-    public float crouchSpeed;
-    public float crouchYScale;
-    private float startYScale;
-
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
     public KeyCode sprintKey = KeyCode.LeftShift;
-    public KeyCode crouchKey = KeyCode.LeftControl;
 
     [Header("Ground Check")]
     public float playerHeight;
@@ -59,8 +52,6 @@ public class PlayerMovement : MonoBehaviour
     {
         walking,
         sprinting,
-        sliding,
-        crouching,
         air
     }
 
@@ -72,14 +63,11 @@ public class PlayerMovement : MonoBehaviour
         rb.freezeRotation = true;
 
         readyToJump = true;
-
-        startYScale = transform.localScale.y;
     }
 
     // Update is called once per frame
     void Update()
     {
-
         grounded = Physics.Raycast(transform.position, Vector2.down, playerHeight * 0.5f + 0.2f, whatIsGround);//grounded is true if the raycast looking for whatIsGround layer is hitting ground
 
         if (grounded)//apply drag when grounded
@@ -112,41 +100,10 @@ public class PlayerMovement : MonoBehaviour
 
             Invoke(nameof(ResetJump), jumpCooldown);
         }
-
-        if (Input.GetKeyDown(crouchKey))
-        {
-            transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);//make the player shorter when crouching
-            rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);//add force down so the player isn't floating
-        }
-
-        if (Input.GetKeyUp(crouchKey))
-        {
-            transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);//make the player normal hight when not crouching
-        }
     }
     private void StateHandler()
     {
-        if (sliding)
-        {
-            state = MovementState.sliding;
-
-            if (OnSlope() && rb.velocity.y < 0.1f)
-            {
-                desiredMoveSpeed = slideSpeed;
-            }
-            else
-            {
-                desiredMoveSpeed = sprintSpeed;
-            }
-        }
-
-        else if (Input.GetKey(crouchKey))
-        {
-            state = MovementState.crouching;
-            desiredMoveSpeed = crouchSpeed;
-        }
-
-        else if (grounded && Input.GetKey(sprintKey))
+        if (grounded && Input.GetKey(sprintKey))
         {
             state = MovementState.sprinting;
             desiredMoveSpeed = sprintSpeed;
