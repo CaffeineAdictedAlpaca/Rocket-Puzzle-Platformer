@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class explotion : MonoBehaviour
@@ -15,6 +16,11 @@ public class explotion : MonoBehaviour
         
     }
 
+    public void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(rocketHit.point, maxRadius);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -23,12 +29,12 @@ public class explotion : MonoBehaviour
             Ray lineOfSight = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
             if (Physics.Raycast(lineOfSight,out rocketHit))
             {
-                print(rocketHit.point);
-                Instantiate(test, rocketHit.point, Quaternion.identity);
+                //print(rocketHit.point);
+                //Instantiate(test, rocketHit.point, Quaternion.identity);
                Collider[] objNear = Physics.OverlapSphere(rocketHit.point, maxRadius, mask);
                 for (int i = 0; i < objNear.Length; i++)
                 {
-                    objNear[i].GetComponent<Rigidbody>().AddExplosionForce(exploForce, rocketHit.transform.position, maxRadius);
+                    objNear[i].GetComponent<Rigidbody>().AddExplosionForce(exploForce, rocketHit.point, maxRadius);
                   //Destroy(objNear[i].gameObject);
                   
                 }
