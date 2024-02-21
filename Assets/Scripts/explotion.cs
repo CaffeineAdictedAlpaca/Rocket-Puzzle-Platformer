@@ -8,6 +8,7 @@ public class explotion : MonoBehaviour
     [SerializeField, Range(0.5f, 100)] float maxRadius;
     RaycastHit rocketHit;
     [SerializeField] LayerMask mask;
+    public float exploForce;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +28,9 @@ public class explotion : MonoBehaviour
                Collider[] objNear = Physics.OverlapSphere(rocketHit.point, maxRadius, mask);
                 for (int i = 0; i < objNear.Length; i++)
                 {
-                  Destroy(objNear[i].gameObject);
+                    objNear[i].GetComponent<Rigidbody>().AddExplosionForce(exploForce, rocketHit.transform.position, maxRadius);
+                  //Destroy(objNear[i].gameObject);
+                  
                 }
             }
         }
