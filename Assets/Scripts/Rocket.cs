@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 using UnityEditor;
 using UnityEngine;
 
-public class explotion : MonoBehaviour
+public class Rocket : MonoBehaviour
 {
     public GameObject test;
     [SerializeField, Range(0.5f, 100)] float maxRadius;
