@@ -18,8 +18,9 @@ public class Door : Interact
     {
         open = true;
     }
-    public override void _Update()
+    public override void Update()
     {
+        base.Update();
         if (open == true && moveX == true)//define the direction of travel for the door -Sixten
         {
             transform.position += new Vector3(speed, 0, 0) * Time.deltaTime;

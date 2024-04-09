@@ -12,14 +12,12 @@ public class Interact : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _Start();
         interactText.SetActive(false);//hide interact text on start -Sixten
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
-        _Update();
         if (canInteract == true && Input.GetKeyDown(KeyCode.E))
         {
             _Interact();
@@ -43,17 +41,7 @@ public class Interact : MonoBehaviour
             canInteract = false;
         }
     }
-    public virtual void _Start()//override this to use start in child script -Sixten
-    {
-
-    }
     public virtual void _Interact()//ovveride this to set what hapens on interact -Sixten
-    {
-
-    }
-
-    public virtual void _Update()//override this to use update in child script -Sixten
-
     {
 
     }
