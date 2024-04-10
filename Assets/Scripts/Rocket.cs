@@ -32,7 +32,7 @@ public class Rocket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        raket.transform.position = rocketHit;//make raycasthit to a vector3.
+        //raket.transform.position = rocketHit;//make raycasthit to a vector3.
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
              Ray lineOfSight = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
