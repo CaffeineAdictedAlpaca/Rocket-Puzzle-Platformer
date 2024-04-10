@@ -38,6 +38,18 @@ public class Button : Interact
         {
             currentMovementTime += Time.deltaTime;
             transform.localPosition = Vector3.Lerp(origin, destination, currentMovementTime / totalMovementTime);
+            StartCoroutine(moveObject2());
+            yield return null;
+        }
+    }
+    public IEnumerator moveObject2()
+    {
+        float totalMovementTime = time; //the amount of time you want the movement to take
+        float currentMovementTime = 0f;//The amount of time that has passed
+        while (Vector3.Distance(transform.localPosition, destination) > 0)
+        {
+            currentMovementTime += Time.deltaTime;
+            transform.localPosition = Vector3.Lerp(destination, origin, currentMovementTime / totalMovementTime);
             yield return null;
         }
     }
