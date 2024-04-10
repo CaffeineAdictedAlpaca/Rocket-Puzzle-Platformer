@@ -26,6 +26,7 @@ public class Button : Interact
     {
         destination = transform.localPosition + transform.right * travel;
         StartCoroutine(MoveObject());
+        interactText.SetActive(false);
     }
     public IEnumerator MoveObject()
     {
