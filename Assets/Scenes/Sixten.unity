@@ -163,12 +163,10 @@ MonoBehaviour:
   interactText: {fileID: 2142839791}
   canInteract: 0
   player: {fileID: 13556567}
-  NegativeY: 0
-  NegativeX: 1
-  Y: 0
-  X: 0
   travel: 0.2
   time: 0.5
+  activated: 0
+  green: {fileID: 2100000, guid: 0664685f1115e7c4789b6baa40dde071, type: 2}
 --- !u!23 &230691078
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -227,13 +225,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 230691076}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -12.4, y: -0.312, z: 0.81}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -12.375, y: -0.31199998, z: 1.1984578}
   m_LocalScale: {x: 1, y: 0.32972, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!65 &230691081
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -253,8 +251,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.0000002, y: 3.208475, z: 1}
-  m_Center: {x: -7.0831445e-15, y: 3.0423868, z: 0}
+  m_Size: {x: 1.0000002, y: 5.61, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &314805841 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2698518314816444793, guid: c7abea644475e8742960c31206c4363d, type: 3}
