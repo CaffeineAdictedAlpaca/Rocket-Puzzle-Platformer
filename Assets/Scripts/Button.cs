@@ -19,12 +19,12 @@ public class Button : Interact
     {
         base.Start();
 
-        origin = transform.position;
+        origin = transform.localPosition;
     }
     // Update is called once per frame
     public override void _Interact()
     {
-        destination = transform.position + transform.up * travel;
+        destination = transform.localPosition + transform.right * travel;
         StartCoroutine(MoveObject());
     }
     public IEnumerator MoveObject()
@@ -52,6 +52,5 @@ public class Button : Interact
             transform.localPosition = Vector3.Lerp(destination, origin, currentMovementTime / totalMovementTime);
             yield return null;
         }
-        canInteract = true;
     }
 }
